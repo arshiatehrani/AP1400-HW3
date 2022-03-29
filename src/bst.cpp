@@ -24,6 +24,7 @@ BST::Node*& BST::get_root()
 }
 void BST::bfs(std::function<void(BST::Node*& node)> func)
 {
+    // Check if the tree exists:
     if (root == nullptr)
         throw std::underflow_error("Nothing to search!");
 
