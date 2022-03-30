@@ -3,6 +3,7 @@
 #include <compare>
 #include <functional>
 #include <iostream>
+#include <memory>
 #include <queue>
 class BST {
 

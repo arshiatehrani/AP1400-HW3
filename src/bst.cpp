@@ -45,3 +45,80 @@ void BST::bfs(std::function<void(BST::Node*& node)> func)
         queue.pop();
     }
 }
+size_t BST::length()
+{
+    size_t len {};
+    // Check if the tree exists:
+    if (root == nullptr)
+        return len;
+
+    std::queue<Node*> queue;
+    queue.push(root);
+    len++;
+    // To the end of the tree:
+    while (!queue.empty()) {
+
+        // Enqueue the left child:
+        if (queue.front()->left != nullptr) {
+            queue.push(queue.front()->left);
+            len++;
+        }
+
+        // Enqueue the right child:
+        if (queue.front()->right != nullptr) {
+            queue.push(queue.front()->right);
+            len++;
+        }
+
+        queue.pop();
+    }
+    return len;
+}
+bool BST::add_node(int _value)
+{
+    std::queue<Node*> tree;
+    BST::Node* node { new BST::Node(_value) };
+
+    if (root == nullptr) {
+        std::cout << "1***********" << std::endl;
+        root = node;
+        return true;
+    }
+
+    tree.push(root);
+    std::cout << "2***********" << std::endl;
+    std::cout << "root: " << tree.front()->value << std::endl;
+
+    while (!tree.empty()) {
+        if (tree.front()->value == _value)
+            return false;
+        std::cout << "3***********" << std::endl;
+
+        if (_value > tree.front()->value) {
+            if (tree.front()->right == nullptr) {
+                std::cout << "right***********" << std::endl;
+                tree.front()->right = node;
+                tree.push(tree.front()->right);
+                return true;
+            } else {
+                tree.push(tree.front()->right);
+                if (tree.front()->right->value == _value)
+                    return false;
+            }
+        }
+        if (_value < tree.front()->value) {
+            if (tree.front()->left == nullptr) {
+                std::cout << "left***********" << std::endl;
+                tree.front()->left = node;
+                tree.push(tree.front()->left);
+                return true;
+            } else {
+                tree.push(tree.front()->left);
+                if (tree.front()->left->value == _value)
+                    return false;
+            }
+        }
+        tree.pop();
+    }
+    return false;
+}

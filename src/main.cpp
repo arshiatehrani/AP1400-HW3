@@ -8,6 +8,14 @@ int main(int argc, char** argv)
     {
         // debug section
         std::cout << "Hello Arshia!" << std::endl;
+        BST bst {};
+        bst.add_node(10);
+        bst.add_node(20);
+        bst.add_node(5);
+        EXPECT_EQ(bst.get_root()->value, 10);
+        std::cout << "root: " << bst.get_root()->value << std::endl;
+        EXPECT_EQ(bst.get_root()->left->value, 5);
+        EXPECT_EQ(bst.get_root()->right->value, 20);
     } else {
         ::testing::InitGoogleTest(&argc, argv);
         std::cout << "RUNNING TESTS ..." << std::endl;
