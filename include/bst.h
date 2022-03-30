@@ -2,6 +2,7 @@
 #define BST_H
 #include <compare>
 #include <functional>
+#include <iomanip>
 #include <iostream>
 #include <memory>
 #include <queue>
@@ -40,5 +41,5 @@ public:
     Node* right;
 };
 std::ostream& operator<<(std::ostream& os, const BST::Node& node);
-std::ostream& operator<<(std::ostream& os, const BST& bst);
+std::ostream& operator<<(std::ostream& os, BST& bst);
 #endif // BST_H

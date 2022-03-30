@@ -142,7 +142,6 @@ TEST(HW3Test, TEST10)
     EXPECT_EQ(bst.length(), 6);
 }
 
-/*
 TEST(HW3Test, TEST11)
 {
     BST bst {};
@@ -156,6 +155,7 @@ TEST(HW3Test, TEST11)
     std::cout << "PRINT A BINARY SEARCH TREE" << std::endl;
     std::cout << bst << std::endl;
 }
+/*
 
 TEST(HW3Test, TEST12) {
     BST bst{};
