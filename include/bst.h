@@ -40,4 +40,5 @@ public:
     Node* right;
 };
 std::ostream& operator<<(std::ostream& os, const BST::Node& node);
+std::ostream& operator<<(std::ostream& os, const BST& bst);
 #endif // BST_H

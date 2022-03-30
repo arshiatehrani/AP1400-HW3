@@ -13,11 +13,6 @@ BST::Node::Node(const Node& node)
 {
     std::cout << "Node copy constructor!" << std::endl;
 }
-std::ostream& operator<<(std::ostream& os, const BST::Node& node)
-{
-    os << "Node->    address: " << &node << "    value: " << node.value << "    left child address: " << node.left << "    right child address: " << node.right << std::endl;
-    return os;
-}
 BST::Node*& BST::get_root()
 {
     return root;
@@ -98,27 +93,30 @@ bool BST::add_node(int _value)
             if (tree.front()->right == nullptr) {
                 std::cout << "right***********" << std::endl;
                 tree.front()->right = node;
-                tree.push(tree.front()->right);
                 return true;
             } else {
-                tree.push(tree.front()->right);
                 if (tree.front()->right->value == _value)
                     return false;
             }
+            tree.push(tree.front()->right);
         }
         if (_value < tree.front()->value) {
             if (tree.front()->left == nullptr) {
                 std::cout << "left***********" << std::endl;
                 tree.front()->left = node;
-                tree.push(tree.front()->left);
                 return true;
             } else {
-                tree.push(tree.front()->left);
                 if (tree.front()->left->value == _value)
                     return false;
             }
+            tree.push(tree.front()->left);
         }
         tree.pop();
     }
     return false;
+}
+std::ostream& operator<<(std::ostream& os, const BST::Node& node)
+{
+    os << "Node->    address: " << &node << "    value: " << node.value << "    left child address: " << node.left << "    right child address: " << node.right << std::endl;
+    return os;
 }
