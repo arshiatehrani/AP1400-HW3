@@ -282,3 +282,80 @@ BST::Node** BST::find_successor(int _value)
     BST::Node** ptr_ret { new BST::Node*(node_ptr) };
     return ptr_ret;
 }
+bool BST::delete_node(int _value)
+{
+    BST::Node* node_ptr { root };
+    std::cout << node_ptr->value << ", " << root->value << std::endl;
+    bool flag { false };
+    size_t num_child {};
+    while (true) {
+        std::cout << "test-1 --------- *****************" << std::endl;
+        if (flag) {
+            BST::Node** node_ptr_parent { new BST::Node*(*(this->find_parrent(node_ptr->value))) };
+            // std::cout << "Parent value" << (*node_ptr_parent)->value << std::endl;
+            if (node_ptr->right == nullptr && node_ptr->left == nullptr) {
+                std::cout << "**********Leaf**********" << std::endl;
+                if ((*node_ptr_parent)->right == node_ptr)
+                    (*node_ptr_parent)->right = nullptr;
+                // break;
+                if ((*node_ptr_parent)->left == node_ptr)
+                    (*node_ptr_parent)->left = nullptr;
+                // break;
+                // node_ptr = nullptr;
+                return true;
+            }
+            if (node_ptr->right != nullptr && node_ptr->left == nullptr) {
+                std::cout << "**********right**********" << std::endl;
+                (*node_ptr_parent)->right = node_ptr->right;
+                node_ptr = nullptr;
+                return true;
+            }
+            if (node_ptr->right == nullptr && node_ptr->left != nullptr) {
+                std::cout << "**********left**********" << std::endl;
+                (*node_ptr_parent)->left = node_ptr->left;
+                node_ptr = nullptr;
+                return true;
+            }
+            if (node_ptr->right != nullptr && node_ptr->left != nullptr) {
+                std::cout << "**********2 child**********" << std::endl;
+                BST::Node** node_ptr_successor { new BST::Node*(*(this->find_successor(node_ptr->value))) };
+                node_ptr->value = (*node_ptr_successor)->value;
+                node_ptr_successor = nullptr;
+                return true;
+            }
+        }
+        if (_value == node_ptr->value && flag == false) {
+            std::cout << "test-1-== --------- *****************" << std::endl;
+            std::cout << node_ptr->value << std::endl;
+            // BST::Node** ptr_ret = new Node*(node_ptr);
+            // return ptr_ret;
+            flag = true;
+            // break;
+        }
+        if (_value > node_ptr->value && flag == false) {
+            std::cout << "test-1-right --------- *****************" << std::endl;
+            if (node_ptr->right != nullptr) {
+                // node_ptr = nullptr;
+                node_ptr = node_ptr->right;
+                // break;
+            } else {
+                return false;
+            }
+        }
+        if (_value < node_ptr->value && flag == false) {
+            std::cout << "test-1-left --------- *****************" << std::endl;
+            if (node_ptr->left != nullptr) {
+                // node_ptr = nullptr;
+                node_ptr = node_ptr->left;
+                // break;
+            } else {
+                std::cout << "test-1-left-else --------- *****************" << std::endl;
+                return false;
+            }
+        }
+    }
+    // node_ptr = nullptr;
+    // return true;
+    BST::Node** ptr_ret { new BST::Node*(node_ptr) };
+    return true;
+}

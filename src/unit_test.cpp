@@ -221,10 +221,10 @@ TEST(HW3Test, TEST15)
     EXPECT_EQ((*node)->left, nullptr);
     EXPECT_EQ((*node)->right, nullptr);
 }
-/*
 
-TEST(HW3Test, TEST16) {
-    BST bst{};
+TEST(HW3Test, TEST16)
+{
+    BST bst {};
     bst.add_node(25);
     bst.add_node(10);
     bst.add_node(50);
@@ -237,8 +237,9 @@ TEST(HW3Test, TEST16) {
     EXPECT_FALSE(bst.delete_node(11));
 }
 
-TEST(HW3Test, TEST17) {
-    BST bst{};
+TEST(HW3Test, TEST17)
+{
+    BST bst {};
     bst.add_node(25);
     bst.add_node(10);
     bst.add_node(50);
@@ -253,6 +254,7 @@ TEST(HW3Test, TEST17) {
     EXPECT_EQ(bst.length(), 7);
     EXPECT_EQ(bst.get_root()->right->right, nullptr);
 }
+/*
 
 TEST(HW3Test, TEST18) {
     BST bst{};
