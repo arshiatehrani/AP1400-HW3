@@ -186,3 +186,45 @@ BST::Node** BST::find_node(int _value)
     BST::Node** ptr_ret { new BST::Node*(node_ptr) };
     return ptr_ret;
 }
+BST::Node** BST::find_parrent(int _value)
+{
+    BST::Node* node_ptr { root };
+    std::cout << node_ptr->value << ", " << root->value << std::endl;
+    while (true) {
+        std::cout << "test-1 --------- *****************" << std::endl;
+        if (_value == node_ptr->value) {
+            std::cout << "test-1-== --------- *****************" << std::endl;
+            std::cout << node_ptr->value << std::endl;
+            // BST::Node** ptr_ret = new Node*(node_ptr);
+            // return ptr_ret;
+            break;
+        }
+        if (_value > node_ptr->value) {
+            std::cout << "test-1-right --------- *****************" << std::endl;
+            if (node_ptr->right != nullptr) {
+                if (_value == node_ptr->right->value)
+                    break;
+                // node_ptr = nullptr;
+                node_ptr = node_ptr->right;
+                // break;
+            } else {
+                return nullptr;
+            }
+        }
+        if (_value < node_ptr->value) {
+            std::cout << "test-1-left --------- *****************" << std::endl;
+            if (node_ptr->left != nullptr) {
+                if (_value == node_ptr->left->value)
+                    break;
+                // node_ptr = nullptr;
+                node_ptr = node_ptr->left;
+                // break;
+            } else {
+                std::cout << "test-1-left-else --------- *****************" << std::endl;
+                return nullptr;
+            }
+        }
+    }
+    BST::Node** ptr_ret { new BST::Node*(node_ptr) };
+    return ptr_ret;
+}
