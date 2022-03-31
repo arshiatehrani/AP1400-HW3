@@ -177,9 +177,10 @@ BST::Node** BST::find_node(int _value)
                 // node_ptr = nullptr;
                 node_ptr = node_ptr->left;
                 // break;
+            } else {
+                std::cout << "test-1-left-else --------- *****************" << std::endl;
+                return nullptr;
             }
-        } else {
-            return nullptr;
         }
     }
     BST::Node** ptr_ret { new BST::Node*(node_ptr) };

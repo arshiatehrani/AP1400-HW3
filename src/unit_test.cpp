@@ -172,9 +172,9 @@ TEST(HW3Test, TEST12)
     EXPECT_EQ((*node)->right->value, 15);
 }
 
-/*
-TEST(HW3Test, TEST13) {
-    BST bst{};
+TEST(HW3Test, TEST13)
+{
+    BST bst {};
     bst.add_node(25);
     bst.add_node(10);
     bst.add_node(50);
@@ -182,10 +182,11 @@ TEST(HW3Test, TEST13) {
     bst.add_node(15);
     bst.add_node(7);
 
-    BST::Node** node{bst.find_node(11)};
+    BST::Node** node { bst.find_node(11) };
     EXPECT_EQ(node, nullptr);
 }
 
+/*
 TEST(HW3Test, TEST14) {
     BST bst{};
     bst.add_node(25);
