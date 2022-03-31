@@ -306,20 +306,35 @@ bool BST::delete_node(int _value)
             }
             if (node_ptr->right != nullptr && node_ptr->left == nullptr) {
                 std::cout << "**********right**********" << std::endl;
-                (*node_ptr_parent)->right = node_ptr->right;
-                node_ptr = nullptr;
+                if ((*node_ptr_parent)->right == node_ptr)
+                    (*node_ptr_parent)->right = node_ptr->right;
+                // break;
+                if ((*node_ptr_parent)->left == node_ptr)
+                    (*node_ptr_parent)->left = node_ptr->right;
+                // (*node_ptr_parent)->right = node_ptr->right;
+                // node_ptr = nullptr;
                 return true;
             }
             if (node_ptr->right == nullptr && node_ptr->left != nullptr) {
                 std::cout << "**********left**********" << std::endl;
-                (*node_ptr_parent)->left = node_ptr->left;
-                node_ptr = nullptr;
+                if ((*node_ptr_parent)->right == node_ptr)
+                    (*node_ptr_parent)->right = node_ptr->left;
+                // break;
+                if ((*node_ptr_parent)->left == node_ptr)
+                    (*node_ptr_parent)->left = node_ptr->left;
+                // (*node_ptr_parent)->left = node_ptr->left;
+                // node_ptr = nullptr;
                 return true;
             }
             if (node_ptr->right != nullptr && node_ptr->left != nullptr) {
                 std::cout << "**********2 child**********" << std::endl;
                 BST::Node** node_ptr_successor { new BST::Node*(*(this->find_successor(node_ptr->value))) };
-                node_ptr->value = (*node_ptr_successor)->value;
+                if ((*node_ptr_parent)->right == node_ptr)
+                    (*node_ptr_parent)->right->value = (*node_ptr_successor)->value;
+                // break;
+                if ((*node_ptr_parent)->left == node_ptr)
+                    (*node_ptr_parent)->left->value = (*node_ptr_successor)->value;
+                // node_ptr->value = (*node_ptr_successor)->value;
                 node_ptr_successor = nullptr;
                 return true;
             }
