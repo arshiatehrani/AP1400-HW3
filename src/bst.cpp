@@ -228,3 +228,57 @@ BST::Node** BST::find_parrent(int _value)
     BST::Node** ptr_ret { new BST::Node*(node_ptr) };
     return ptr_ret;
 }
+BST::Node** BST::find_successor(int _value)
+{
+    BST::Node* node_ptr { root };
+    std::cout << node_ptr->value << ", " << root->value << std::endl;
+    bool flag { false };
+    while (true) {
+        std::cout << "test-1 --------- *****************" << std::endl;
+        if (flag) {
+            if (node_ptr->left == nullptr)
+                break;
+            else {
+                node_ptr = node_ptr->left;
+            }
+            if (node_ptr->right == nullptr)
+                break;
+            else {
+                while (node_ptr->right != nullptr) {
+                    node_ptr = node_ptr->right;
+                }
+            }
+        }
+        if (_value == node_ptr->value && flag == false) {
+            std::cout << "test-1-== --------- *****************" << std::endl;
+            std::cout << node_ptr->value << std::endl;
+            // BST::Node** ptr_ret = new Node*(node_ptr);
+            // return ptr_ret;
+            flag = true;
+            // break;
+        }
+        if (_value > node_ptr->value && flag == false) {
+            std::cout << "test-1-right --------- *****************" << std::endl;
+            if (node_ptr->right != nullptr) {
+                // node_ptr = nullptr;
+                node_ptr = node_ptr->right;
+                // break;
+            } else {
+                return nullptr;
+            }
+        }
+        if (_value < node_ptr->value && flag == false) {
+            std::cout << "test-1-left --------- *****************" << std::endl;
+            if (node_ptr->left != nullptr) {
+                // node_ptr = nullptr;
+                node_ptr = node_ptr->left;
+                // break;
+            } else {
+                std::cout << "test-1-left-else --------- *****************" << std::endl;
+                return nullptr;
+            }
+        }
+    }
+    BST::Node** ptr_ret { new BST::Node*(node_ptr) };
+    return ptr_ret;
+}
