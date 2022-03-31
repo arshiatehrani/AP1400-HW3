@@ -131,6 +131,7 @@ std::ostream& operator<<(std::ostream& os, BST& bst)
     queue.push(bst.get_root());
     // To the end of the tree:
     while (!queue.empty()) {
+        os.width(80);
         os << std::left << std::setw(16) << queue.front() << "=> Value:" << queue.front()->value << std::right << std::setw(20) << "left:" << queue.front()->left << std::setw(13) << "Right:" << queue.front()->right << std::endl;
 
         // Enqueue the left child:
@@ -147,7 +148,40 @@ std::ostream& operator<<(std::ostream& os, BST& bst)
     os << "********************************************************************************" << std::endl;
     return os;
 }
-BST::Node** BST::find_node(int value)
+BST::Node** BST::find_node(int _value)
 {
-    
+    BST::Node* node_ptr { root };
+    std::cout << node_ptr->value << ", " << root->value << std::endl;
+    while (true) {
+        std::cout << "test-1 --------- *****************" << std::endl;
+        if (_value == node_ptr->value) {
+            std::cout << "test-1-== --------- *****************" << std::endl;
+            std::cout << node_ptr->value << std::endl;
+            // BST::Node** ptr_ret = new Node*(node_ptr);
+            // return ptr_ret;
+            break;
+        }
+        if (_value > node_ptr->value) {
+            std::cout << "test-1-right --------- *****************" << std::endl;
+            if (node_ptr->right != nullptr) {
+                // node_ptr = nullptr;
+                node_ptr = node_ptr->right;
+                // break;
+            } else {
+                return nullptr;
+            }
+        }
+        if (_value < node_ptr->value) {
+            std::cout << "test-1-left --------- *****************" << std::endl;
+            if (node_ptr->left != nullptr) {
+                // node_ptr = nullptr;
+                node_ptr = node_ptr->left;
+                // break;
+            }
+        } else {
+            return nullptr;
+        }
+    }
+    BST::Node** ptr_ret { new BST::Node*(node_ptr) };
+    return ptr_ret;
 }
