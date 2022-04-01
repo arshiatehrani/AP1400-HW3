@@ -17,8 +17,8 @@ int main(int argc, char** argv)
         bst.add_node(5);
         bst.add_node(20);
         bst.add_node(22);
-        BST bst2 { ++bst };
-        // std::cout << bst << std::endl;
+        BST bst2 { bst++ };
+        std::cout << bst << std::endl;
         // BST bst3 { bst++ };
         // std::cout << (*bst3.find_node(26))->value << std::endl;
         std::cout << bst2 << std::endl;
