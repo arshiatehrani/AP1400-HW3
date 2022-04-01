@@ -96,7 +96,7 @@ void BST::bfs(std::function<void(BST::Node*& node)> func) const
         queue.pop();
     }
 }
-size_t BST::length()
+size_t BST::length() const
 {
     size_t len {};
     // Check if the tree exists:
@@ -492,11 +492,26 @@ const BST BST::operator++(int) const
 }
 BST& BST::operator=(const BST& bst)
 {
+    std::cout << this->length() << std::endl;
+    std::cout << bst.length() << std::endl;
     std::cout << "BST operator = copy version" << std::endl;
     if (this == &bst)
         return *this;
+    std::cout << this->root->value << std::endl;
+    // std::cout << bst.root << std::endl;
     delete root;
-    root = new BST::Node(*bst.root);
+    std::cout << this->root->value << std::endl;
+    // std::cout << this->get_root() << std::endl;
+    root = nullptr;
+    // std::cout << this->root->value << std::endl;
+    std::queue<BST::Node*> queue;
+    bst.bfs([&queue](BST::Node*& node) { queue.push(node); });
+    while (!queue.empty()) {
+        this->add_node(queue.front()->value);
+        std::cout << "(((((((((((((((((((((" << std::endl;
+        queue.pop();
+    }
+    std::cout << this->root->value << std::endl;
     return *this;
 }
 BST& BST::operator=(BST&& bst)

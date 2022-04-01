@@ -16,7 +16,7 @@ public:
     ~BST(); // destructor
     Node*& get_root();
     void bfs(std::function<void(Node*& node)> func) const;
-    size_t length();
+    size_t length()const;
     bool add_node(int value);
     Node** find_node(int value);
     Node** find_parrent(int value);
