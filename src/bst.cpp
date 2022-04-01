@@ -1,4 +1,5 @@
 #include "bst.h"
+
 BST::Node::Node(int _value, Node* _left, Node* _right)
     : value { _value }
     , left { _left }
@@ -6,6 +7,7 @@ BST::Node::Node(int _value, Node* _left, Node* _right)
 {
     std::cout << "Node constructor!" << std::endl;
 }
+
 BST::Node::Node(const Node& node)
     : value { node.value }
     , left { node.left }
@@ -13,6 +15,7 @@ BST::Node::Node(const Node& node)
 {
     std::cout << "Node copy constructor!" << std::endl;
 }
+
 // BST::Node& BST::Node::operator=(const Node& node)
 // {
 //     node.left;
@@ -25,6 +28,7 @@ BST::Node::Node(const Node& node)
 //     right = new BST::Node(*node.right);
 //     return *this;
 // }
+
 // BST::Node& BST::Node::operator=(Node&& node)
 // {
 //     std::cout << "Node operator = move version" << std::endl;
@@ -35,36 +39,36 @@ BST::Node::Node(const Node& node)
 //     node.right = nullptr;
 //     return *this;
 // }
+
 BST::BST(std::initializer_list<int> node)
     : root { nullptr }
 {
+    std::cout << "BST constructor" << std::endl;
     for (const int* node_iterator_ptr { node.begin() }; node_iterator_ptr != node.end(); node_iterator_ptr++)
         this->add_node(*node_iterator_ptr);
 }
+
 BST::BST(const BST& bst)
     : root { nullptr }
 {
     std::cout << "BST copy constructor" << std::endl;
     std::queue<BST::Node*> queue;
     bst.bfs([&queue](BST::Node*& node) { queue.push(node); });
+
     while (!queue.empty()) {
         this->add_node(queue.front()->value);
         std::cout << ")))))))))))))))" << std::endl;
         queue.pop();
     }
-    // *root = *bst.root;
 }
+
 BST::BST(BST&& bst)
     : root { bst.get_root() }
 {
     std::cout << "BST move constructor" << std::endl;
     bst.root = nullptr;
 }
-// BST::BST()
-//     : root { nullptr }
-// {
-//     std::cout << "default constructor" << std::endl;
-// }
+
 BST::~BST()
 {
     std::cout << "BST destructor" << std::endl;
@@ -73,20 +77,21 @@ BST::~BST()
     for (auto& node : nodes)
         delete node;
 }
+
 BST::Node*& BST::get_root()
 {
     return root;
 }
+
 void BST::bfs(std::function<void(BST::Node*& node)> func) const
 {
-    std::cout << "***" << std::endl;
     // Check if the tree exists:
     if (root == nullptr)
-        // throw std::underflow_error("Nothing to search!");
         return;
 
     std::queue<Node*> queue;
     queue.push(root);
+
     // To the end of the tree:
     while (!queue.empty()) {
 
@@ -102,35 +107,14 @@ void BST::bfs(std::function<void(BST::Node*& node)> func) const
         queue.pop();
     }
 }
+
 size_t BST::length() const
 {
     size_t len {};
-    // Check if the tree exists:
-    if (root == nullptr)
-        return len;
-
-    std::queue<Node*> queue;
-    queue.push(root);
-    len++;
-    // To the end of the tree:
-    while (!queue.empty()) {
-
-        // Enqueue the left child:
-        if (queue.front()->left != nullptr) {
-            queue.push(queue.front()->left);
-            len++;
-        }
-
-        // Enqueue the right child:
-        if (queue.front()->right != nullptr) {
-            queue.push(queue.front()->right);
-            len++;
-        }
-
-        queue.pop();
-    }
+    this->bfs([&len](BST::Node*& node) { len++; });
     return len;
 }
+
 bool BST::add_node(int _value)
 {
     std::queue<Node*> tree;
