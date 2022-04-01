@@ -13,16 +13,53 @@ BST::Node::Node(const Node& node)
 {
     std::cout << "Node copy constructor!" << std::endl;
 }
+Node& BST::Node::operator=(const Node& node)
+{
+    node.left;
+    std::cout << "operator = copy version" << std::endl;
+    if (this == &node)
+        return *this;
+    value = node.value;
+    delete left, right;
+    left {new BST::Node(*node.left))};
+    right {new BST::Node(*node.right))};
+    return *this;
+}
+Node& BST::Node::operator=(Node&& node)
+{
+    std::cout << "operator = move version" << std::endl;
+    value = node.value;
+    left = node.left;
+    right = node.right;
+    node.left = nullptr;
+    node.right = nullptr;
+    return *this;
+}
 BST::BST(const BST& bst)
-    : root { bst.root }
+    : root { new BST::Node(*bst.root) }
 {
     std::cout << "BST copy constructor" << std::endl;
+    // *root = *bst.root;
+}
+BST::BST(BST&& bst)
+    : root { bst.root }
+{
+    std::cout << "BST move constructor" << std::endl;
+    bst.root = nullptr;
 }
 // BST::BST()
 //     : root { nullptr }
 // {
 //     std::cout << "default constructor" << std::endl;
 // }
+BST::~BST()
+{
+    std::cout << "BST destructor" << std::endl;
+    std::vector<Node*> nodes;
+    bfs([&nodes](BST::Node*& node) { nodes.push_back(node); });
+    for (auto& node : nodes)
+        delete node;
+}
 BST::Node*& BST::get_root()
 {
     return root;

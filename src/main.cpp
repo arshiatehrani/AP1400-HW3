@@ -10,17 +10,18 @@ int main(int argc, char** argv)
         std::cout << "Hello Arshia!" << std::endl;
         BST bst {};
         std::cout << bst.get_root() << std::endl;
-        // bst.add_node(25);
-        // bst.add_node(10);
-        // bst.add_node(50);
-        // bst.add_node(65);
-        // bst.add_node(5);
-        // bst.add_node(20);
-        // bst.add_node(22);
-        // // BST bst2 { ++bst };
+        bst.add_node(25);
+        bst.add_node(10);
+        bst.add_node(50);
+        bst.add_node(65);
+        bst.add_node(5);
+        bst.add_node(20);
+        bst.add_node(22);
+        BST bst2 { ++bst };
         // std::cout << bst << std::endl;
         // BST bst3 { bst++ };
-        // // std::cout << bst2 << std::endl;
+        // std::cout << (*bst3.find_node(26))->value << std::endl;
+        // std::cout << bst2 << std::endl;
         // std::cout << bst << std::endl;
         // std::cout << bst3 << std::endl;
     } else {

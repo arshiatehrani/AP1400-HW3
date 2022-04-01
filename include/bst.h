@@ -12,6 +12,8 @@ public:
     class Node;
     BST() = default; // default constructor
     BST(const BST& bst); // copy constructor
+    BST(BST&& bst); // move constructor
+    ~BST(); // destructor
     Node*& get_root();
     void bfs(std::function<void(Node*& node)> func);
     size_t length();
@@ -34,6 +36,8 @@ public:
 
     // Copy Constructors:
     Node(const Node& node);
+    Node& operator=(const Node& node);
+    Node& operator=(Node&& node);
 
     // Inequality functions with int:
     std::partial_ordering operator<=>(const int& _value) const { return value <=> _value; }
