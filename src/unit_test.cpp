@@ -2,7 +2,7 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include <algorithm>
-/*
+
 TEST(HW3Test, TEST1)
 {
 
@@ -79,6 +79,7 @@ TEST(HW3Test, TEST5)
 
 TEST(HW3Test, TEST6)
 {
+    std::cout << "test6" << std::endl;
     BST bst {};
     EXPECT_EQ(bst.get_root(), nullptr);
 }
@@ -415,6 +416,7 @@ TEST(HW3Test, TEST24)
     EXPECT_EQ(bst.length(), copy.length());
     EXPECT_EQ(bst.get_root()->right->value, copy.get_root()->right->value);
 }
+/*
 
 TEST(HW3Test, TEST25)
 {
@@ -463,7 +465,6 @@ TEST(HW3Test, TEST27)
     EXPECT_EQ(test_value, move.get_root()->right->value);
 }
 
-/*
 TEST(HW3Test, TEST28)
 {
     BST bst {};

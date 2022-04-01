@@ -13,21 +13,21 @@ BST::Node::Node(const Node& node)
 {
     std::cout << "Node copy constructor!" << std::endl;
 }
-Node& BST::Node::operator=(const Node& node)
+BST::Node& BST::Node::operator=(const Node& node)
 {
     node.left;
-    std::cout << "operator = copy version" << std::endl;
+    std::cout << "Node operator = copy version" << std::endl;
     if (this == &node)
         return *this;
     value = node.value;
     delete left, right;
-    left {new BST::Node(*node.left))};
-    right {new BST::Node(*node.right))};
+    left = new BST::Node(*node.left);
+    right = new BST::Node(*node.right);
     return *this;
 }
-Node& BST::Node::operator=(Node&& node)
+BST::Node& BST::Node::operator=(Node&& node)
 {
-    std::cout << "operator = move version" << std::endl;
+    std::cout << "Node operator = move version" << std::endl;
     value = node.value;
     left = node.left;
     right = node.right;
@@ -36,13 +36,20 @@ Node& BST::Node::operator=(Node&& node)
     return *this;
 }
 BST::BST(const BST& bst)
-    : root { new BST::Node(*bst.root) }
+    : root { nullptr }
 {
     std::cout << "BST copy constructor" << std::endl;
+    std::queue<BST::Node*> queue;
+    bst.bfs([&queue](BST::Node*& node) { queue.push(node); });
+    while (!queue.empty()) {
+        this->add_node(queue.front()->value);
+        std::cout << ")))))))))))))))" << std::endl;
+        queue.pop();
+    }
     // *root = *bst.root;
 }
 BST::BST(BST&& bst)
-    : root { bst.root }
+    : root { bst.get_root() }
 {
     std::cout << "BST move constructor" << std::endl;
     bst.root = nullptr;
@@ -64,11 +71,13 @@ BST::Node*& BST::get_root()
 {
     return root;
 }
-void BST::bfs(std::function<void(BST::Node*& node)> func)
+void BST::bfs(std::function<void(BST::Node*& node)> func) const
 {
+    std::cout << "***" << std::endl;
     // Check if the tree exists:
     if (root == nullptr)
-        throw std::underflow_error("Nothing to search!");
+        // throw std::underflow_error("Nothing to search!");
+        return;
 
     std::queue<Node*> queue;
     queue.push(root);
@@ -480,4 +489,20 @@ const BST BST::operator++(int) const
     BST _bst { *this };
     ++*this;
     return _bst;
+}
+BST& BST::operator=(const BST& bst)
+{
+    std::cout << "BST operator = copy version" << std::endl;
+    if (this == &bst)
+        return *this;
+    delete root;
+    root = new BST::Node(*bst.root);
+    return *this;
+}
+BST& BST::operator=(BST&& bst)
+{
+    std::cout << "BST operator = move version" << std::endl;
+    root = bst.root;
+    bst.root = nullptr;
+    return *this;
 }

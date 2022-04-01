@@ -4,7 +4,7 @@
 
 int main(int argc, char** argv)
 {
-    if (true) // make false to run unit-tests
+    if (false) // make false to run unit-tests
     {
         // debug section
         std::cout << "Hello Arshia!" << std::endl;
@@ -21,7 +21,7 @@ int main(int argc, char** argv)
         // std::cout << bst << std::endl;
         // BST bst3 { bst++ };
         // std::cout << (*bst3.find_node(26))->value << std::endl;
-        // std::cout << bst2 << std::endl;
+        std::cout << bst2 << std::endl;
         // std::cout << bst << std::endl;
         // std::cout << bst3 << std::endl;
     } else {
