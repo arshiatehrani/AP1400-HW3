@@ -35,6 +35,12 @@ BST::Node& BST::Node::operator=(Node&& node)
     node.right = nullptr;
     return *this;
 }
+BST::BST(std::initializer_list<int> node)
+    : root { nullptr }
+{
+    for (const int* node_iterator_ptr { node.begin() }; node_iterator_ptr != node.end(); node_iterator_ptr++)
+        this->add_node(*node_iterator_ptr);
+}
 BST::BST(const BST& bst)
     : root { nullptr }
 {

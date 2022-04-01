@@ -2,21 +2,24 @@
 #define BST_H
 #include <compare>
 #include <functional>
+#include <initializer_list>
 #include <iomanip>
 #include <iostream>
 #include <memory>
 #include <queue>
+#include <vector>
 class BST {
 
 public:
     class Node;
+    BST(std::initializer_list<int>); // constructor
     BST() = default; // default constructor
     BST(const BST& bst); // copy constructor
     BST(BST&& bst); // move constructor
     ~BST(); // destructor
     Node*& get_root();
     void bfs(std::function<void(Node*& node)> func) const;
-    size_t length()const;
+    size_t length() const;
     bool add_node(int value);
     Node** find_node(int value);
     Node** find_parrent(int value);
