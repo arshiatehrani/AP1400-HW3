@@ -10,6 +10,8 @@ class BST {
 
 public:
     class Node;
+    BST() = default; // default constructor
+    BST(const BST& bst); // copy constructor
     Node*& get_root();
     void bfs(std::function<void(Node*& node)> func);
     size_t length();
@@ -18,6 +20,8 @@ public:
     Node** find_parrent(int value);
     Node** find_successor(int value);
     bool delete_node(int value);
+    const BST& operator++() const;
+    const BST operator++(int) const;
 
 private:
     Node* root;

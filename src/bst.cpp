@@ -13,6 +13,16 @@ BST::Node::Node(const Node& node)
 {
     std::cout << "Node copy constructor!" << std::endl;
 }
+BST::BST(const BST& bst)
+    : root { bst.root }
+{
+    std::cout << "BST copy constructor" << std::endl;
+}
+// BST::BST()
+//     : root { nullptr }
+// {
+//     std::cout << "default constructor" << std::endl;
+// }
 BST::Node*& BST::get_root()
 {
     return root;
@@ -398,4 +408,39 @@ bool BST::delete_node(int _value)
     // return true;
     BST::Node** ptr_ret { new BST::Node*(node_ptr) };
     return true;
+}
+const BST& BST::operator++() const
+{
+    std::cout << "Operator ++ left" << std::endl;
+    // Check if the tree exists:
+    if (root == nullptr)
+        throw std::underflow_error("Nothing to search!");
+
+    std::queue<Node*> queue;
+    root->value++;
+    queue.push(root);
+    // To the end of the tree:
+    while (!queue.empty()) {
+
+        // Enqueue the left child:
+        if (queue.front()->left != nullptr) {
+            queue.front()->left->value++;
+            queue.push(queue.front()->left);
+        }
+
+        // Enqueue the right child:
+        if (queue.front()->right != nullptr) {
+            queue.front()->right->value++;
+            queue.push(queue.front()->right);
+        }
+        queue.pop();
+    }
+    return *this;
+}
+const BST BST::operator++(int) const
+{
+    std::cout << "Operator ++ right" << std::endl;
+    BST _bst { *this };
+    ++*this;
+    return _bst;
 }

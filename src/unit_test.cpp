@@ -405,24 +405,25 @@ TEST(HW3Test, TEST23)
     EXPECT_EQ(bst.get_root()->left->right->right, nullptr);
 }
 
-/*
-TEST(HW3Test, TEST24) {
-    BST bst{};
+TEST(HW3Test, TEST24)
+{
+    BST bst {};
     bst.add_node(5);
     bst.add_node(10);
     bst.add_node(50);
-    BST copy{bst};
+    BST copy { bst };
     EXPECT_EQ(bst.length(), copy.length());
     EXPECT_EQ(bst.get_root()->right->value, copy.get_root()->right->value);
 }
 
-TEST(HW3Test, TEST25) {
-    BST bst{};
+TEST(HW3Test, TEST25)
+{
+    BST bst {};
     bst.add_node(5);
     bst.add_node(10);
     bst.add_node(50);
 
-    BST equal{};
+    BST equal {};
     bst.add_node(51);
     bst.add_node(66);
     bst.add_node(10);
@@ -431,8 +432,9 @@ TEST(HW3Test, TEST25) {
     EXPECT_EQ(bst.get_root()->right->right->value, equal.get_root()->right->right->value);
 }
 
-TEST(HW3Test, TEST26) {
-    BST bst{};
+TEST(HW3Test, TEST26)
+{
+    BST bst {};
     bst.add_node(5);
     bst.add_node(10);
     bst.add_node(50);
@@ -446,22 +448,24 @@ TEST(HW3Test, TEST26) {
     EXPECT_EQ(bst.get_root()->right->left->value, 8);
 }
 
-TEST(HW3Test, TEST27) {
-    BST bst{};
+TEST(HW3Test, TEST27)
+{
+    BST bst {};
     bst.add_node(5);
     bst.add_node(10);
     bst.add_node(50);
 
-    int test_value{bst.get_root()->right->value};
-    BST::Node* adddress_of_root{*bst.find_node(5)};
+    int test_value { bst.get_root()->right->value };
+    BST::Node* adddress_of_root { *bst.find_node(5) };
 
-    BST move{std::move(bst)};
+    BST move { std::move(bst) };
     EXPECT_EQ(adddress_of_root, move.get_root());
     EXPECT_EQ(test_value, move.get_root()->right->value);
 }
 
-TEST(HW3Test, TEST28) {
-    BST bst{};
+TEST(HW3Test, TEST28)
+{
+    BST bst {};
     bst.add_node(25);
     bst.add_node(10);
     bst.add_node(50);
@@ -470,18 +474,20 @@ TEST(HW3Test, TEST28) {
     bst.add_node(20);
     bst.add_node(22);
 
-    int test_value{bst.get_root()->left->right->value};
-    BST::Node* adddress_of_root{*bst.find_node(25)};
+    int test_value { bst.get_root()->left->right->value };
+    BST::Node* adddress_of_root { *bst.find_node(25) };
 
-    BST move{};
+    BST move {};
     move = std::move(bst);
     EXPECT_EQ(adddress_of_root, move.get_root());
     EXPECT_EQ(test_value, move.get_root()->left->right->value);
 }
 
-TEST(HW3Test, TEST29) {
-    BST bst1{5, 1, 10, 2, 8, 50, 4, 60};
-    BST bst2{3, 2, 100, 20, 8, 50, 4, 60, 44, 23};
+/*
+TEST(HW3Test, TEST29)
+{
+    BST bst1 { 5, 1, 10, 2, 8, 50, 4, 60 };
+    BST bst2 { 3, 2, 100, 20, 8, 50, 4, 60, 44, 23 };
     EXPECT_EQ((*bst1.find_successor(5))->value, 4);
     EXPECT_EQ(bst2.length(), 10);
 }
