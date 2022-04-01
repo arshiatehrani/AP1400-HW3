@@ -379,10 +379,10 @@ TEST(HW3Test, TEST22)
     EXPECT_EQ(bst.get_root()->left->left->right, nullptr);
     EXPECT_EQ(bst.get_root()->left->left->value, 5);
 }
-/*
 
-TEST(HW3Test, TEST23) {
-    BST bst{};
+TEST(HW3Test, TEST23)
+{
+    BST bst {};
     bst.add_node(25);
     bst.add_node(10);
     bst.add_node(50);
@@ -405,6 +405,7 @@ TEST(HW3Test, TEST23) {
     EXPECT_EQ(bst.get_root()->left->right->right, nullptr);
 }
 
+/*
 TEST(HW3Test, TEST24) {
     BST bst{};
     bst.add_node(5);

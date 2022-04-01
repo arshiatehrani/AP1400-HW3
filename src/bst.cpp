@@ -331,17 +331,33 @@ bool BST::delete_node(int _value)
                 std::cout << "**********2 child**********" << std::endl;
                 BST::Node** node_ptr_successor { new BST::Node*(*(this->find_successor(node_ptr->value))) };
                 BST::Node** node_ptr_successor_parent { new BST::Node*(*(this->find_parrent((*node_ptr_successor)->value))) };
-                if ((*node_ptr_parent)->right == node_ptr)
+                bool root_check { true };
+                if ((*node_ptr_parent)->right == node_ptr) {
+                    std::cout << "node is right side of its parent" << std::endl;
+                    root_check = false;
                     (*node_ptr_parent)->right->value = (*node_ptr_successor)->value;
+                }
                 // break;
-                if ((*node_ptr_parent)->left == node_ptr)
+                if ((*node_ptr_parent)->left == node_ptr) {
+                    std::cout << "node is left side of its parent" << std::endl;
+                    root_check = false;
                     (*node_ptr_parent)->left->value = (*node_ptr_successor)->value;
+                }
+                if (root_check == true) {
+                    std::cout << "node is the root" << std::endl;
+                    root->value = (*node_ptr_successor)->value;
+                }
 
-                if ((*node_ptr_successor_parent)->right == *node_ptr_successor)
+                if ((*node_ptr_successor_parent)->right == *node_ptr_successor) {
+                    std::cout << "node_successor is right side of its parent" << std::endl;
+                    std::cout << (*node_ptr_successor)->value << std::endl;
                     (*node_ptr_successor_parent)->right = nullptr;
+                }
                 // break;
-                if ((*node_ptr_successor_parent)->left == *node_ptr_successor)
+                if ((*node_ptr_successor_parent)->left == *node_ptr_successor) {
+                    std::cout << "node_successor is left side of its parent" << std::endl;
                     (*node_ptr_successor_parent)->left = nullptr;
+                }
                 // node_ptr->value = (*node_ptr_successor)->value;
                 delete node_ptr_successor;
                 // node_ptr_successor = nullptr;
