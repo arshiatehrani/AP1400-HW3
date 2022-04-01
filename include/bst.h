@@ -1,5 +1,6 @@
 #ifndef BST_H
 #define BST_H
+
 #include <compare>
 #include <functional>
 #include <initializer_list>
@@ -8,8 +9,8 @@
 #include <memory>
 #include <queue>
 #include <vector>
-class BST {
 
+class BST {
 public:
     class Node;
 
@@ -40,6 +41,7 @@ public:
 private:
     Node* root;
 };
+
 class BST::Node {
 public:
     // Constructors:
@@ -60,4 +62,5 @@ public:
     Node* left;
     Node* right;
 };
+
 #endif // BST_H
