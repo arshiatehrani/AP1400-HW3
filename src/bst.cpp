@@ -13,28 +13,28 @@ BST::Node::Node(const Node& node)
 {
     std::cout << "Node copy constructor!" << std::endl;
 }
-BST::Node& BST::Node::operator=(const Node& node)
-{
-    node.left;
-    std::cout << "Node operator = copy version" << std::endl;
-    if (this == &node)
-        return *this;
-    value = node.value;
-    delete left, right;
-    left = new BST::Node(*node.left);
-    right = new BST::Node(*node.right);
-    return *this;
-}
-BST::Node& BST::Node::operator=(Node&& node)
-{
-    std::cout << "Node operator = move version" << std::endl;
-    value = node.value;
-    left = node.left;
-    right = node.right;
-    node.left = nullptr;
-    node.right = nullptr;
-    return *this;
-}
+// BST::Node& BST::Node::operator=(const Node& node)
+// {
+//     node.left;
+//     std::cout << "Node operator = copy version" << std::endl;
+//     if (this == &node)
+//         return *this;
+//     value = node.value;
+//     delete left, right;
+//     left = new BST::Node(*node.left);
+//     right = new BST::Node(*node.right);
+//     return *this;
+// }
+// BST::Node& BST::Node::operator=(Node&& node)
+// {
+//     std::cout << "Node operator = move version" << std::endl;
+//     value = node.value;
+//     left = node.left;
+//     right = node.right;
+//     node.left = nullptr;
+//     node.right = nullptr;
+//     return *this;
+// }
 BST::BST(std::initializer_list<int> node)
     : root { nullptr }
 {
