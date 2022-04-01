@@ -161,11 +161,13 @@ bool BST::add_node(int _value)
     }
     return false;
 }
+
 std::ostream& operator<<(std::ostream& os, const BST::Node& node)
 {
     os << "Node->    address: " << &node << "    value: " << node.value << "    left child address: " << node.left << "    right child address: " << node.right << std::endl;
     return os;
 }
+
 std::ostream& operator<<(std::ostream& os, BST& bst)
 {
     os << "********************************************************************************" << std::endl;
@@ -194,6 +196,7 @@ std::ostream& operator<<(std::ostream& os, BST& bst)
     os << "********************************************************************************" << std::endl;
     return os;
 }
+
 BST::Node** BST::find_node(int _value)
 {
     BST::Node* node_ptr { root };
@@ -232,6 +235,7 @@ BST::Node** BST::find_node(int _value)
     BST::Node** ptr_ret { new BST::Node*(node_ptr) };
     return ptr_ret;
 }
+
 BST::Node** BST::find_parrent(int _value)
 {
     BST::Node* node_ptr { root };
@@ -274,6 +278,7 @@ BST::Node** BST::find_parrent(int _value)
     BST::Node** ptr_ret { new BST::Node*(node_ptr) };
     return ptr_ret;
 }
+
 BST::Node** BST::find_successor(int _value)
 {
     BST::Node* node_ptr { root };
@@ -328,6 +333,7 @@ BST::Node** BST::find_successor(int _value)
     BST::Node** ptr_ret { new BST::Node*(node_ptr) };
     return ptr_ret;
 }
+
 bool BST::delete_node(int _value)
 {
     BST::Node* node_ptr { root };
@@ -445,6 +451,7 @@ bool BST::delete_node(int _value)
     BST::Node** ptr_ret { new BST::Node*(node_ptr) };
     return true;
 }
+
 const BST& BST::operator++() const
 {
     std::cout << "Operator ++ left" << std::endl;
@@ -473,6 +480,7 @@ const BST& BST::operator++() const
     }
     return *this;
 }
+
 const BST BST::operator++(int) const
 {
     std::cout << "Operator ++ right" << std::endl;
@@ -480,6 +488,7 @@ const BST BST::operator++(int) const
     ++*this;
     return _bst;
 }
+
 BST& BST::operator=(const BST& bst)
 {
     std::cout << this->length() << std::endl;
@@ -504,6 +513,7 @@ BST& BST::operator=(const BST& bst)
     std::cout << this->root->value << std::endl;
     return *this;
 }
+
 BST& BST::operator=(BST&& bst)
 {
     std::cout << "BST operator = move version" << std::endl;
