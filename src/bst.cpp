@@ -460,7 +460,7 @@ const BST& BST::operator++() const
     std::cout << "Operator ++ left" << std::endl;
     // Check if the tree exists:
     if (root == nullptr)
-        throw std::underflow_error("Nothing to search!");
+        return *this;
 
     std::queue<Node*> queue;
     root->value++;

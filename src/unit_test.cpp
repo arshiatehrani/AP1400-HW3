@@ -416,7 +416,6 @@ TEST(HW3Test, TEST24)
     EXPECT_EQ(bst.length(), copy.length());
     EXPECT_EQ(bst.get_root()->right->value, copy.get_root()->right->value);
 }
-/*
 
 TEST(HW3Test, TEST25)
 {
@@ -468,22 +467,30 @@ TEST(HW3Test, TEST27)
 TEST(HW3Test, TEST28)
 {
     BST bst {};
+    std::cout << "&&&&&&&&&1" << std::endl;
     bst.add_node(25);
+    std::cout << "&&&&&&&&&2" << std::endl;
     bst.add_node(10);
+    std::cout << "&&&&&&&&&3" << std::endl;
     bst.add_node(50);
+    std::cout << "&&&&&&&&&4" << std::endl;
     bst.add_node(65);
+    std::cout << "&&&&&&&&&5" << std::endl;
     bst.add_node(5);
+    std::cout << "&&&&&&&&&6" << std::endl;
     bst.add_node(20);
+    std::cout << "&&&&&&&&&7" << std::endl;
     bst.add_node(22);
+    std::cout << "&&&&&&&&&8" << std::endl;
+    // int test_value { bst.get_root()->left->right->value };
+    // BST::Node* adddress_of_root { *bst.find_node(25) };
 
-    int test_value { bst.get_root()->left->right->value };
-    BST::Node* adddress_of_root { *bst.find_node(25) };
-
-    BST move {};
-    move = std::move(bst);
-    EXPECT_EQ(adddress_of_root, move.get_root());
-    EXPECT_EQ(test_value, move.get_root()->left->right->value);
+    // BST move {};
+    // move = std::move(bst);
+    // EXPECT_EQ(adddress_of_root, move.get_root());
+    // EXPECT_EQ(test_value, move.get_root()->left->right->value);
 }
+/*
 
 TEST(HW3Test, TEST29)
 {
