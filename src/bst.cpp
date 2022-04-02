@@ -155,37 +155,83 @@ bool BST::add_node(int _value)
 
 std::ostream& operator<<(std::ostream& os, const BST::Node& node)
 {
-    os << "Node->    address: " << &node << "    value: " << node.value << "    left child address: " << node.left << "    right child address: " << node.right << std::endl;
+    // os << "Address:" << &node << std::right;
+    // os.width(11);
+    // os << "=> value:"
+    //    << node.value << std::right;
+    // os.width(8);
+    // os << "Left:" << std::left;
+    // os.width(17);
+    // os << node.left << std::right;
+    // os.width(1);
+    // os << "Right:" << std::left;
+    // os << node.right;
+    os << &node << "\t=> value: " << node.value << "\t  ";
+    os << "left: " << std::left;
+    os.width(12);
+    os << node.left << std::right;
+    os.width(12);
+    os << "right: " << std::left;
+    os << node.right;
     return os;
 }
 
 std::ostream& operator<<(std::ostream& os, BST& bst)
 {
-    os << "********************************************************************************" << std::endl;
-    // Check if the tree exists:
-    if (bst.get_root() == nullptr)
-        throw std::underflow_error("Nothing to show!");
+    // os << "********************************************************************************" << std::endl;
+    // // Check if the tree exists:
+    // if (bst.get_root() == nullptr)
+    //     throw std::underflow_error("Nothing to show!");
 
-    std::queue<BST::Node*> queue;
-    queue.push(bst.get_root());
-    // To the end of the tree:
-    while (!queue.empty()) {
-        os.width(80);
-        os << std::left << std::setw(16) << queue.front() << "=> Value:" << queue.front()->value << std::right << std::setw(20) << "left:" << queue.front()->left << std::setw(13) << "Right:" << queue.front()->right << std::endl;
+    // std::queue<BST::Node*> queue;
+    // queue.push(bst.get_root());
+    // // To the end of the tree:
+    // while (!queue.empty()) {
+    //     // os << std::left << std::setw(16) << queue.front() << "=> Value:" << queue.front()->value << std::right << std::setw(20) << "left:" << queue.front()->left << std::setw(13) << "Right:" << queue.front()->right << std::endl;
+    //     os.width(16);
+    //     os << queue.front() << "=> Value:" << queue.front()->value << std::left << std::setw(30);
+    //     os.width(25);
+    //     os << "left:" << queue.front()->left << std::left << std::setw(30);
+    //     os.width(25);
+    //     os << "Right:" << queue.front()->right << std::endl;
+    //     os.width(25);
+    //     // Enqueue the left child:
+    //     if (queue.front()->left != nullptr)
+    //         queue.push(queue.front()->left);
 
-        // Enqueue the left child:
-        if (queue.front()->left != nullptr)
-            queue.push(queue.front()->left);
+    //     // Enqueue the right child:
+    //     if (queue.front()->right != nullptr)
+    //         queue.push(queue.front()->right);
 
-        // Enqueue the right child:
-        if (queue.front()->right != nullptr)
-            queue.push(queue.front()->right);
+    //     queue.pop();
+    // }
+    // os << "binary search tree size: " << bst.length() << std::endl;
+    // os << "********************************************************************************" << std::endl;
+    // std::queue<BST::Node*> nodes;
+    // bst.bfs([&nodes](BST::Node*& node) { nodes.push(node); });
+    // os << std::string(80, '*') << std::endl;
 
-        queue.pop();
+    // while (!nodes.empty()) {
+    //     os << *nodes.front() << std::endl;
+    //     nodes.pop();
+    // }
+    // os << "Binary Search tree size: " << bst.length() << std::endl;
+    // os << std::string(80, '*') << std::endl;
+
+    os << std::string(80, '*') << std::endl;
+    std::queue<BST::Node*> nodes;
+
+    // Using lambda function
+    bst.bfs([&nodes](BST::Node*& node) { nodes.push(node); });
+
+    while (!nodes.empty()) {
+        os << *nodes.front() << std::endl;
+        nodes.pop();
     }
-    os << "binary search tree size: " << bst.length() << std::endl;
-    os << "********************************************************************************" << std::endl;
+    os << "Binary Search tree size: " << bst.length() << std::endl;
+    os << std::string(80, '*') << std::endl;
     return os;
+    // return os;
 }
 
 BST::Node** BST::find_node(int _value)
