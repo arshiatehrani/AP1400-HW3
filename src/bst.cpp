@@ -166,12 +166,12 @@ std::ostream& operator<<(std::ostream& os, const BST::Node& node)
     // os.width(1);
     // os << "Right:" << std::left;
     // os << node.right;
-    os << &node << "\t=> value: " << node.value << "\t  ";
-    os << "left: " << std::left;
+    os << &node << "\t=> value:" << node.value << "\t   ";
+    os << "left:" << std::left;
     os.width(12);
     os << node.left << std::right;
     os.width(12);
-    os << "right: " << std::left;
+    os << "right:" << std::left;
     os << node.right;
     return os;
 }
