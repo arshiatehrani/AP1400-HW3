@@ -14,6 +14,7 @@ BST::Node::Node(const Node& node)
 {
 }
 
+// Node operator = copy version
 // BST::Node& BST::Node::operator=(const Node& node)
 // {
 //     node.left;
@@ -27,6 +28,7 @@ BST::Node::Node(const Node& node)
 //     return *this;
 // }
 
+// Node operator = move version
 // BST::Node& BST::Node::operator=(Node&& node)
 // {
 //     std::cout << "Node operator = move version" << std::endl;
