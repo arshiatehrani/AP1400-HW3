@@ -226,6 +226,7 @@ BST::Node** BST::find_parrent(int _value)
             if (node_ptr->right != nullptr) {
                 if (_value == node_ptr->right->value)
                     break;
+
                 node_ptr = node_ptr->right;
             } else {
                 return nullptr;
@@ -252,6 +253,7 @@ BST::Node** BST::find_successor(int _value)
     bool flag { false };
 
     while (true) {
+
         if (flag) {
 
             if (node_ptr->left == nullptr)
@@ -295,6 +297,7 @@ bool BST::delete_node(int _value)
     size_t num_child {};
 
     while (true) {
+
         if (flag) {
 
             BST::Node** node_ptr_parent { new BST::Node*(*(this->find_parrent(node_ptr->value))) };
@@ -348,6 +351,7 @@ bool BST::delete_node(int _value)
                     root_check = false;
                     (*node_ptr_parent)->right->value = (*node_ptr_successor)->value;
                 }
+
                 if ((*node_ptr_parent)->left == node_ptr) {
                     root_check = false;
                     (*node_ptr_parent)->left->value = (*node_ptr_successor)->value;
