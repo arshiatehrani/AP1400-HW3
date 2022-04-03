@@ -404,13 +404,13 @@ const BST& BST::operator++() const
     // To the end of the tree:
     while (!queue.empty()) {
 
-        // Enqueue the left child:
+        // The left child:
         if (queue.front()->left != nullptr) {
             queue.front()->left->value++;
             queue.push(queue.front()->left);
         }
 
-        // Enqueue the right child:
+        // The right child:
         if (queue.front()->right != nullptr) {
             queue.front()->right->value++;
             queue.push(queue.front()->right);
