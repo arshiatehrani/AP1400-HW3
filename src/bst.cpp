@@ -266,6 +266,7 @@ BST::Node** BST::find_successor(int _value)
             else {
                 while (node_ptr->right != nullptr)
                     node_ptr = node_ptr->right;
+                break;
             }
         }
 
@@ -361,11 +362,11 @@ bool BST::delete_node(int _value)
                 if (root_check == true)
                     root->value = (*node_ptr_successor)->value;
 
-                if ((*node_ptr_successor_parent)->right == *node_ptr_successor)
+                // if the node's successor has a left child
+                if ((*node_ptr_successor)->left != nullptr)
+                    (*node_ptr_successor_parent)->right = (*node_ptr_successor)->left;
+                else
                     (*node_ptr_successor_parent)->right = nullptr;
-
-                if ((*node_ptr_successor_parent)->left == *node_ptr_successor)
-                    (*node_ptr_successor_parent)->left = nullptr;
 
                 delete node_ptr_successor;
                 delete node_ptr_successor_parent;
