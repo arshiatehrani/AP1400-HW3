@@ -19,11 +19,8 @@ int main(int argc, char** argv)
         bst.add_node(22);
         BST bst2 { bst++ };
         std::cout << bst << std::endl;
-        // BST bst3 { bst++ };
-        // std::cout << (*bst3.find_node(26))->value << std::endl;
         std::cout << bst2 << std::endl;
-        // std::cout << bst << std::endl;
-        // std::cout << bst3 << std::endl;
+
     } else {
         ::testing::InitGoogleTest(&argc, argv);
         std::cout << "RUNNING TESTS ..." << std::endl;

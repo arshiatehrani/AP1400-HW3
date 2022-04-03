@@ -310,6 +310,7 @@ bool BST::delete_node(int _value)
                     (*node_ptr_parent)->left = nullptr;
 
                 delete node_ptr;
+                delete node_ptr_parent;
                 return true;
             }
 
@@ -365,6 +366,7 @@ bool BST::delete_node(int _value)
                     (*node_ptr_successor_parent)->left = nullptr;
 
                 delete node_ptr_successor;
+                delete node_ptr_successor_parent;
                 return true;
             }
         }
